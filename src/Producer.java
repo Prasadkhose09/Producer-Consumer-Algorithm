@@ -9,7 +9,11 @@ public class Producer extends Thread{
     public void run(){
         int i=1;
         while (true){
-            this.c.producer(i);
+            try {
+                this.c.producer(i);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
